@@ -9,14 +9,14 @@ def exists():
     check50.exists("four4s.py")
 
 @check50.check(exists)
-def run():
+def runs():
     """ File runs without syntax errors"""
     check50.py.compile("four4s.py")
 
 
-@check50.check(run)
+@check50.check(runs)
 def strings():
-    """ File runs without syntax errors"""
+    """ File has only the allowed characters and operations """
     with open("four4s.py") as f:
         filedata = f.read()
         count4s = filedata.count("4")
@@ -38,4 +38,17 @@ def strings():
             raise check50.Failure("You can only use basic math operations and must start from the template provided")
 
 
+
+@check50.check(runs)
+def equals_expected():
+    """ Integer results are equal to expected values """
+    one = check50.py.import_("four4s.py").one
+    two = check50.py.import_("four4s.py").two
+    three = check50.py.import_("four4s.py").three
+    four = check50.py.import_("four4s.py").four
+    names = [one, two, three, four]
+    integers = [1, 2, 3, 4]
+    for i in range(4):
+        if names[i] != integers[i]:
+            raise check50.Mismatch(names[i], integers[i])
 
