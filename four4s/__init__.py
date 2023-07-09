@@ -37,13 +37,15 @@ def strings():
         if filedata != "zeroonetwothreefour":
             raise check50.Failure("You can only use basic math operations and must start from the template provided")
 
+
 @check50.check(runs)
 def equals_expected():
     """ Test if integer results are equal to expected values """
-    one = check50.py.import_("four4s.py").one
-    two = check50.py.import_("four4s.py").two
-    three = check50.py.import_("four4s.py").three
-    four = check50.py.import_("four4s.py").four
+    imp = check50.py.import_("four4s.py")
+    one = imp.one
+    two = imp.two
+    three = imp.three
+    four = imp.four
     results = [one, two, three, four]
     exp_values = [1, 2, 3, 4]
     for i in range(4):
