@@ -38,17 +38,16 @@ def strings():
             raise check50.Failure("You can only use basic math operations and must start from the template provided")
 
 
-
 @check50.check(runs)
 def equals_expected():
-    """ Integer results are equal to expected values """
+    """ Test if integer results are equal to expected values """
     one = check50.py.import_("four4s.py").one
     two = check50.py.import_("four4s.py").two
     three = check50.py.import_("four4s.py").three
     four = check50.py.import_("four4s.py").four
-    names = [one, two, three, four]
-    integers = [1, 2, 3, 4]
+    results = [one, two, three, four]
+    exp_values = [1, 2, 3, 4]
     for i in range(4):
-        if names[i] != integers[i]:
-            raise check50.Mismatch(names[i], integers[i])
+        if results[i] != exp_values[i]:
+            raise check50.Mismatch(exp_values[i], results[i])
 
