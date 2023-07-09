@@ -41,11 +41,7 @@ def strings():
 @check50.check(runs)
 def equals_expected():
     """ Test if integer results are equal to expected values """
-    one = check50.py.import_("four4s.py").one
-    two = check50.py.import_("four4s.py").two
-    three = check50.py.import_("four4s.py").three
-    four = check50.py.import_("four4s.py").four
-    results = [one, two, three, four]
+    results = [x for x in check50.py.import_("four4s.py")]
     exp_values = [1, 2, 3, 4]
     for i in range(4):
         if results[i] != exp_values[i]:
