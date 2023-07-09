@@ -48,6 +48,5 @@ def equals_expected():
     exp_values = [1, 2, 3, 4]
     for i in range(4):
         if results[i] != exp_values[i]:
-            raise check50.Mismatch(exp_values[i], results[i])
-
+            raise check50.Mismatch(str(exp_values[i]), str(results[i]))
 
