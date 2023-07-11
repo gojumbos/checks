@@ -41,5 +41,12 @@ def check_2():
         if x in out:
             raise check50.Failure("You printed out something extra " + str(x))
 
+@check50.check(runs)
+def check_3():
+    """ Main func prints correctly when signal is first character """
+    out = check50.run("python secret_codes.py").stdin("[5,7,6,8]").stdin("5").stdin("3").stdout()
+    if "[7, 6, 8]" not in out:
+        raise check50.Mismatch("[7,6,8]", out)
+
 
 
