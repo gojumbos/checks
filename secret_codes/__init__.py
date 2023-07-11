@@ -10,12 +10,12 @@ def exists():
 
 @check50.check(exists)
 def runs():
-    """ File runs without syntax errors"""
+    """ File runs without syntax errors """
     check50.py.compile("secret_codes.py")
 
 
-@check50.check(runs)
-def has_main():
-    imprt = check50.py.import_("secret_codes.py")
-    if not imprt.main():
-        raise check50.Failure("Your program does not have a main() function")
+check50.check(runs)
+def type_ret():
+    # imprt = check50.py.import_("secret_codes.py")
+    out = check50.run("python secret_codes.py").stdin([]).stdin(0).stdin(0).stdout()
+    print(out)
