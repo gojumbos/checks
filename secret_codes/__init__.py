@@ -16,8 +16,8 @@ def runs():
 @check50.check(runs)
 def safe():
     """ Main func prints Safe for bad input"""
-    out = check50.run("python secret_codes.py").stdin("[-1]").stdin("0").stdin("0").stdout()
-    if out != "Safe":
+    out = check50.run("python secret_codes.py").stdin("[1]").stdin("0").stdin("0").stdout()
+    if "Safe" not in out:
         raise check50.Mismatch("Safe", out)
 
 
@@ -25,13 +25,21 @@ def safe():
 def check_1():
     """ Main func prints correctly """
     out = check50.run("python secret_codes.py").stdin("[0,1,2,3,4]").stdin("1").stdin("2").stdout()
-    if out != "[2,3]":
+    if "[2, 3]" not in out :
         raise check50.Mismatch("[2,3]", out)
+    for x in ["0","1","4"]:
+        if x in out:
+            raise check50.Failure("You printed out something extra " + str(x))
 
 @check50.check(runs)
 def check_2():
     """ Main func prints correctly when signal is last character """
     out = check50.run("python secret_codes.py").stdin("[5,7,6,8]").stdin("8").stdin("4").stdout()
-    if out != "[]":
-        raise check50.Mismatch("[2,3]", out)
+    if "[]" not in out:
+        raise check50.Mismatch("[]", out)
+    for x in ["5","7","6","8"]:
+        if x in out:
+            raise check50.Failure("You printed out something extra " + str(x))
+
+
 
