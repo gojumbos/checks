@@ -17,5 +17,5 @@ def runs():
 @check50.check(runs)
 def has_main():
     imprt = check50.py.import_("secret_codes.py")
-    if not imprt.main:
+    if not imprt.main():
         raise check50.Failure("Your program does not have a main() function")
