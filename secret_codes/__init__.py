@@ -20,16 +20,26 @@ def safe():
     if "Safe" not in out:
         raise check50.Mismatch("Safe", out)
 
-
 @check50.check(runs)
 def check_1():
     """ Main func prints correctly """
     out = check50.run("python secret_codes.py").stdin("[0,1,2,3,4]").stdin("1").stdin("2").stdout()
-    if "[2, 3]" not in out :
-        raise check50.Mismatch("[2,3]", out)
+    for x in ["2", "3"]:
+        if x not in  out:
+            raise check50.Mismatch("[2,3]", out)
     for x in ["0","1","4"]:
         if x in out:
             raise check50.Failure("You printed out something extra " + str(x))
+
+# @check50.check(runs)
+# def check_1():
+#     """ Main func prints correctly """
+#     out = check50.run("python secret_codes.py").stdin("[0,1,2,3,4]").stdin("1").stdin("2").stdout()
+#     if "[2, 3]" not in out :
+#         raise check50.Mismatch("[2,3]", out)
+#     for x in ["0","1","4"]:
+#         if x in out:
+#             raise check50.Failure("You printed out something extra " + str(x))
 
 @check50.check(runs)
 def check_2():
